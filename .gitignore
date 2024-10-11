@@ -1,0 +1,5 @@
+logs/
+venv/
+subway_project/target/
+subway_project/dbt_packages/
+subway_project/logs/
