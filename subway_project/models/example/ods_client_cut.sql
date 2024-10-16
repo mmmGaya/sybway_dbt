@@ -1,3 +1,5 @@
 {{ config(materialized='table') }}
 
-select * from raw_source_subway where execution_date = (select execution_date from metadata_airflow)
+select * from raw_source_subway where execution_date = '{{ var('execution_date') }}'
+
+-- select '{{ var('execution_date') }}'
