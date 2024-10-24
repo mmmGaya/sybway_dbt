@@ -1,6 +1,8 @@
 SELECT 
-    run_id dataflow_id,
-    execution_date dataflow_dttm,
+    --run_id dataflow_id,
+    --execution_date dataflow_dttm,
+    '{{ var('run_id') }}' dataflow_id,
+    '{{ var('execution_date') }}' dataflow_dttm,
     oid source_system_dk,
     id client_rk,
     md5(id || '#' || oid) hub_key
@@ -9,7 +11,8 @@ FROM
         ma.run_id,
         o.*
     from 
-        {{ref('ods_client_cut')}} o,  (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma
+       -- {{ref('ods_client_cut')}} o,  (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma
+       {{ref('ods_client_cut')}} 
     where 
         (oid, id) in  
             (select oid, id from {{ref('ods_client_cut')}}

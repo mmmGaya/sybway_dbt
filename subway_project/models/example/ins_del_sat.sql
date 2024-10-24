@@ -1,9 +1,11 @@
 select 
-	ma.run_id  dataflow_id,
-    ma.execution_date dataflow_dttm,
+	--ma.run_id  dataflow_id,
+    --ma.execution_date dataflow_dttm,
+    '{{ var('run_id') }}' dataflow_id,
+    '{{ var('execution_date') }}' dataflow_dttm,
     source_system_dk, 
     client_rk, 
-    ma.execution_date valid_from_dttm, 
+    '{{ var('execution_date') }}' valid_from_dttm, 
     hashdiff_key,
     1 actual_flg,
     1 delete_flg,
@@ -13,7 +15,8 @@ select
     client_city_dt,
     client_age_cnt
 from 
-	dbt_schema."GPR_RV_S_CLIENT", (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma
+	--dbt_schema."GPR_RV_S_CLIENT", (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma
+    dbt_schema."GPR_RV_S_CLIENT"
 where client_rk in
 (
 select 

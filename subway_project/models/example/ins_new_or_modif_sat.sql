@@ -1,9 +1,11 @@
 SELECT
-    ma.run_id  dataflow_id,
-    ma.execution_date dataflow_dttm,
+    --ma.run_id  dataflow_id,
+    --ma.execution_date dataflow_dttm,
+    '{{ var('run_id') }}' dataflow_id,
+    '{{ var('execution_date') }}' dataflow_dttm,
     oid source_system_dk, 
     md5(id|| '#' || oid) client_rk, 
-    ma.execution_date valid_from_dttm, 
+    '{{ var('execution_date') }}' valid_from_dttm, 
     md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key,
     1 actual_flg,
     0 delete_flg,
@@ -13,7 +15,8 @@ SELECT
     birthday client_city_dt,
     age client_age_cnt
 FROM 
-    {{ref('ods_client_cut')}}, (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma
+    --{{ref('ods_client_cut')}}, (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma
+    {{ref('ods_client_cut')}}
 WHERE md5(id || '#' || oid) IN 
             (SELECT
                 hub_key
