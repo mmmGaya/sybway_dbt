@@ -1,6 +1,6 @@
 select 
-	ma.run_id  dataflow_id,
-    ma.execution_date dataflow_dttm,
+	'{{ var('run_id') }}' dataflow_id,
+    '{{ var('execution_date') }}'::timestamp dataflow_dttm,
     client_rk,
     x_client_rk
 from
@@ -19,6 +19,4 @@ from
 		except 
 		select x_client_rk from dbt_schema."GPR_BV_A_CLIENT"
 		)
-	)
-	, 
-	(select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma 
+	) 
