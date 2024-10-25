@@ -1,14 +1,14 @@
 select 
-	ma.run_id  dataflow_id,
-	ma.execution_date dataflow_dttm,
+	'{{ var('run_id') }}' dataflow_id,
+    '{{ var('execution_date') }}'::timestamp dataflow_dttm,
 	md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key,
 	md5(id || '#' || oid) client_rk,
 	0 delete_flg,
 	1 actual_flg, 
 	oid source_system_dk,
-	ma.execution_date valid_from_dttm
+	'{{ var('execution_date') }}'::timestamp valid_from_dttm
 from 
-	{{ref('ods_client_cut')}}, (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma
+	{{ref('ods_client_cut')}}
 where md5(id || '#' || oid) in
 (
 select 
@@ -19,7 +19,7 @@ from
 		md5(id || '#' || oid) client_rk, 
 		md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key 
 	from 
-	{{ref('ods_client_cut')}} occ 
+	{{ref('ods_client_cut')}}  
 	except
 	select 
 		client_rk, 

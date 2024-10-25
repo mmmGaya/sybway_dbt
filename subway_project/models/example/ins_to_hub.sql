@@ -8,11 +8,13 @@ FROM
     (select 
         *
     from 
-       dbt_schema.ods_client_cut
+       {{ ref('ods_client_cut') }}
     where 
         (oid, id) in  
-            (select oid, id from dbt_schema.ods_client_cut
+            (select oid, id from  {{ ref('ods_client_cut') }}
             except
             select source_system_dk, client_rk from dbt_schema."GPR_RV_H_CLIENT"
             )
     )
+
+    --depends on {{ ref('ods_client_cut') }}

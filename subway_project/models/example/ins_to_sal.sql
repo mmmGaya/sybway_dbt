@@ -20,4 +20,5 @@ from
 		select x_client_rk from dbt_schema."GPR_BV_A_CLIENT"
 		)
 	)
-	, (select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma 
+	, 
+	(select * from dbt_schema.metadata_airflow_test where source_n = 'csv') ma 

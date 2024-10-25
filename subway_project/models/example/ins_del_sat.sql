@@ -29,8 +29,9 @@ from
     select 
 		md5(id || '#' || oid) client_rk
 	from 
-		dbt_schema.ods_client_cut )
+		 {{ ref('ods_client_cut') }} )
 		)
 	and actual_flg = 1
 
+    --depends on {{ ref('ods_client_cut') }}
     --depends on {{ ref('ins_new_or_modif_sat') }}
