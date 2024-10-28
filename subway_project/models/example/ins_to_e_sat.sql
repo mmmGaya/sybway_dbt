@@ -14,4 +14,4 @@ from (
     )
 
 --depends on  {{ ref('ins_new_or_modif_e_sat') }}
---depends on {{ ref('ins_del_e_sat') }}
+--depends on {{ ref('ins_del_e_sat_macros') }}
