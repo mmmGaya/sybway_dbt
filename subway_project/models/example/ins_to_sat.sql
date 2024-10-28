@@ -17,4 +17,4 @@ from (
     )
 
 --depends on  {{ ref('ins_new_or_modif_sat') }}
---depends on {{ ref('ins_del_sat') }}
+--depends on {{ ref('ins_del_sat_macros') }}
