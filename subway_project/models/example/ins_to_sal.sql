@@ -20,3 +20,7 @@ from
 		select x_client_rk from dbt_schema."GPR_BV_A_CLIENT"
 		)
 	) 
+
+
+--depends on  {{ ref('ins_to_hub') }}
+--depends on  {{ ref('ins_to_sat') }}

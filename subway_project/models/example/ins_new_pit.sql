@@ -23,4 +23,5 @@ from
     where client_rk not in (select client_rk from dbt_schema."GPR_BV_P_CLIENT")
     )
 
---depends on {{ref('ins_modif_pit')}}
+--depends on  {{ ref('ins_to_sat') }}
+--depends on  {{ ref('ins_to_sal') }}
