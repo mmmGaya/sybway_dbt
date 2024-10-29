@@ -10,3 +10,7 @@ from dbt_schema."GPR_BV_A_CLIENT" ac join dbt_schema."GPR_RV_S_CLIENT" sc on ac.
 group by  ac.client_rk) 
 where client_rk in (select client_rk from dbt_schema."GPR_BV_P_CLIENT") 
   and mx_dt > (select max (client_subway_star_vf_dttm) from dbt_schema."GPR_BV_P_CLIENT" where client_rk = tb.client_rk)
+
+
+--depends on  {{ ref('ins_to_sat') }}
+--depends on  {{ ref('ins_to_sal') }}
