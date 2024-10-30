@@ -10,4 +10,4 @@ from dbt_schema."GPR_BV_P_CLIENT" pc
 join dbt_schema."GPR_BV_A_CLIENT" ac on pc.client_rk = ac.client_rk 
 join dbt_schema."GPR_RV_S_CLIENT" sc on ac.x_client_rk = sc.client_rk and pc.valid_from_dttm = sc.valid_from_dttm 
 where extract(year from pc.valid_from_dttm) > 1960 and sc.delete_flg = 0 and sc.actual_flg = 1)
-where mrk = srk and (client_rk, valid_from_dttm) not in (select client_rk, valid_from_dttm from dbt_schema."GPR_EM_DIM_CLIENT");
+where mrk = srk and (client_rk, valid_from_dttm) not in (select client_rk, valid_from_dttm from dbt_schema."GPR_EM_DIM_CLIENT")
