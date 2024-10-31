@@ -1,26 +1,26 @@
-version: '1.0.0'
+# version: '1.0.0'
 
-sources:
-  - name: firebird_external_source_client
-    database: SUBWAY
-    schema: PUBLIC
-    table: client
-    type: external
-    external:
-      type: jdbc
-      url: jdbc:firebirdsql://anarisuto-firebird:3050/C:\firebird_databases\SUBWAY.FDB
-      username: SYSDBA
-      password: 123
-      driver: /home/anarisuto-12/jdbc-firebird/jaybird-5.0.6.java11.jar
+# sources:
+#   - name: firebird_external_source_client
+#     database: SUBWAY
+#     schema: PUBLIC
+#     table: client
+#     type: external
+#     external:
+#       type: jdbc
+#       url: jdbc:firebirdsql://anarisuto-firebird:3050/C:\firebird_databases\SUBWAY.FDB
+#       username: SYSDBA
+#       password: 123
+#       driver: /home/anarisuto-12/jdbc-firebird/jaybird-5.0.6.java11.jar
 
-  - name: firebird_external_source_phone
-    database: SUBWAY
-    schema: PUBLIC
-    table: phone
-    type: external
-    external:
-      type: jdbc
-      url: jdbc:firebirdsql://anarisuto-firebird:3050/C:\firebird_databases\SUBWAY.FDB
-      username: SYSDBA
-      password: 123
-      driver: /home/anarisuto-12/jdbc-firebird/jaybird-5.0.6.java11.jar
+#   - name: firebird_external_source_phone
+#     database: SUBWAY
+#     schema: PUBLIC
+#     table: phone
+#     type: external
+#     external:
+#       type: jdbc
+#       url: jdbc:firebirdsql://anarisuto-firebird:3050/C:\firebird_databases\SUBWAY.FDB
+#       username: SYSDBA
+#       password: 123
+#       driver: /home/anarisuto-12/jdbc-firebird/jaybird-5.0.6.java11.jar
