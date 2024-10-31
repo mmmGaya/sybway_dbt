@@ -1,4 +1,9 @@
-select '{{ var('run_id') }}' dataflow_id, '{{ var('execution_date') }}'::timestamp dataflow_dttm,
+
+  create view "postgres"."dbt_schema"."ins_to_dim__dbt_tmp"
+    
+    
+  as (
+    select 'manual__2024-10-31T13:36:46.534879+00:00' dataflow_id, '2024-10-31 13:36:46.534879+00:00'::timestamp dataflow_dttm,
 		client_rk, valid_from_dttm, valid_to_dttm, 
 	    client_name_desc, client_phone_desc, client_city_desc, client_birthday_dt, client_age_cnt
 from
@@ -11,3 +16,4 @@ join dbt_schema."GPR_BV_A_CLIENT" ac on pc.client_rk = ac.client_rk
 join dbt_schema."GPR_RV_S_CLIENT" sc on ac.x_client_rk = sc.client_rk and pc.valid_from_dttm = sc.valid_from_dttm 
 where extract(year from pc.valid_from_dttm) > 1960 and sc.delete_flg = 0 and sc.actual_flg = 1)
 where mrk = srk and (client_rk, valid_from_dttm) not in (select client_rk, valid_from_dttm from dbt_schema."GPR_EM_DIM_CLIENT")
+  );

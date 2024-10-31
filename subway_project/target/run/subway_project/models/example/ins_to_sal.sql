@@ -1,6 +1,11 @@
-select 
-	'{{ var('run_id') }}' dataflow_id,
-    '{{ var('execution_date') }}'::timestamp dataflow_dttm,
+
+  create view "postgres"."dbt_schema"."ins_to_sal__dbt_tmp"
+    
+    
+  as (
+    select 
+	'manual__2024-10-31T13:36:46.534879+00:00' dataflow_id,
+    '2024-10-31 13:36:46.534879+00:00'::timestamp dataflow_dttm,
     client_rk,
     x_client_rk
 from
@@ -19,4 +24,5 @@ from
 		except 
 		select x_client_rk from dbt_schema."GPR_BV_A_CLIENT"
 		)
-	) 
+	)
+  );

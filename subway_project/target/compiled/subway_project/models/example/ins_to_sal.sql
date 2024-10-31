@@ -1,6 +1,6 @@
 select 
-	'{{ var('run_id') }}' dataflow_id,
-    '{{ var('execution_date') }}'::timestamp dataflow_dttm,
+	'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+    '1960-01-01 00:00:00'::timestamp dataflow_dttm,
     client_rk,
     x_client_rk
 from
@@ -19,4 +19,4 @@ from
 		except 
 		select x_client_rk from dbt_schema."GPR_BV_A_CLIENT"
 		)
-	) 
+	)

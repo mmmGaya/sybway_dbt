@@ -1,9 +1,9 @@
 select 
-    '{{ var('run_id') }}' dataflow_id,
-    '{{ var('execution_date') }}'::timestamp dataflow_dttm,
+    'manual__2024-10-30T08:37:14.345265+00:00' dataflow_id,
+    '2024-10-30 08:37:14.345265+00:00'::timestamp dataflow_dttm,
     source_system_dk, 
     client_rk, 
-    '{{ var('execution_date') }}'::timestamp valid_from_dttm, 
+    '2024-10-30 08:37:14.345265+00:00'::timestamp valid_from_dttm, 
     hashdiff_key,
     1 actual_flg,
     1 delete_flg,
@@ -29,9 +29,6 @@ from
     select 
 		md5(id || '#' || oid) client_rk
 	from 
-		 {{ ref('ods_client_cut') }} )
+		 "postgres"."dbt_schema"."ods_client_cut" )
 		)
 	and actual_flg = 1
-
-    --depends on {{ ref('ods_client_cut') }}
-    --depends on {{ ref('ins_new_or_modif_sat') }}

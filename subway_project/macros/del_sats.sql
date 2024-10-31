@@ -1,7 +1,7 @@
 {% macro select_all_columns_macro(table_name) %}
 
 select 
-    {% if table_name == 'dbt_schema."GPR_RV_E_CLIENT"' %}
+    {% if table_name == '"dbt_schema"."GPR_RV_E_CLIENT"' %}
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         hashdiff_key,
@@ -47,3 +47,4 @@ from
 	and actual_flg = 1
 
 {% endmacro %}
+

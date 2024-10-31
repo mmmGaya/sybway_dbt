@@ -1,5 +1,5 @@
-select '{{ var('run_id') }}' dataflow_id,
-       '{{ var('execution_date') }}'::timestamp dataflow_dttm, 
+select 'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+       '1960-01-01 00:00:00'::timestamp dataflow_dttm, 
        client_rk, 
        mx_dt valid_from_dttm,
        to_timestamp( '5999-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss') valid_to_dttm,
