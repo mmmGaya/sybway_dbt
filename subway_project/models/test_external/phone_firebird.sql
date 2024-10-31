@@ -6,5 +6,5 @@ select
     , question3 as question3
     , id_client as id_client
 from {{
-    source('firebird_external_source_phone')
+    source('firebird_external_source_phone', 'phone')
 }}
