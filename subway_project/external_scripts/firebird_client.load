@@ -1,0 +1,4 @@
+LOAD DBF
+    FROM jdbc:firebirdsql://anarisuto-firebird:3050//C:\firebird_databases\SUBWAY.FDB?user='${firebird_username}'&password='${firebird_password}'
+    INTO postgresql://'{$pg_dbt_username}':'{$pg_dbt_password}'@desktop-5h7tutm:5432/postgres
+    WITH create table, table name firebird_client

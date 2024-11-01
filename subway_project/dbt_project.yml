@@ -42,12 +42,3 @@ models:
     test_external:
       +materialized: table
       enabled: true
-
-
-# targets:
-#   - name: firebird_external_source_client
-#     type: external
-#     description: "система источник на комне анарисуто-11 в бд firebird"
-#   - name: firebird_external_source_phone
-#     type: external
-#     description: "система источник на комне анарисуто-11 в бд firebird"
