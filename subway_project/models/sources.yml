@@ -14,8 +14,7 @@ sources:
             user: SYSDBA
             password: 123
 
-    phone:
-      - name: client
+      - name: phone
         description: "External table of FireBird client"
         external:
           location: 'jdbc:firebirdsql://anarisuto-firebird:3050/C:\firebird_databases\SUBWAY.FDB'
