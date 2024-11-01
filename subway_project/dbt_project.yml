@@ -41,7 +41,7 @@ models:
       +materialized: view
     test_external:
       +materialized: table
-      enabled: false
+      enabled: true
 
 
 # targets:
