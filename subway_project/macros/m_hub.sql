@@ -1,5 +1,5 @@
 
-{% macro ins_hub_macros(hub_table, args) %}
+{% macro ins_hub_macros(hub_table, source_table,  key_join, args) %}
 
 SELECT 
     '{{ var('run_id') }}' dataflow_id,
@@ -9,10 +9,10 @@ SELECT
     {% for i in args %} {{ i }} || '#' || {% endfor %}  oid hub_key
  
 FROM 
-    {{ var('name_source_tab') }}  ods
+    {{ ref( source_table  ) }}  ods
 	LEFT JOIN 
 	{{ hub_table }} h_cl
-	ON md5( {% for i in args %} ods.{{ i }} || '#' || {% endfor %}  ods.oid) = h_cl.client_rk
-WHERE h_cl.client_rk IS NULL
+	ON md5( {% for i in args %} ods.{{ i }} || '#' || {% endfor %}  ods.oid) = h_cl.{{ key_join }}
+WHERE h_cl.{{ key_join }} IS NULL
 
 {% endmacro %}
