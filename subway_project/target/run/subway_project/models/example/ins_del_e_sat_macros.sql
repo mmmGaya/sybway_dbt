@@ -7,14 +7,14 @@
 
 select 
     
-        'manual__2024-10-31T13:36:46.534879+00:00' dataflow_id,
-        '2024-10-31 13:36:46.534879+00:00'::timestamp dataflow_dttm,
+        'manual__2024-11-02T11:40:49.889671+00:00' dataflow_id,
+        '2024-11-02 11:40:49.889671+00:00'::timestamp dataflow_dttm,
         hashdiff_key,
         client_rk,
         1 delete_flg,
         1 actual_flg, 
         source_system_dk,
-        '2024-10-31 13:36:46.534879+00:00'::timestamp valid_from_dttm
+        '2024-11-02 11:40:49.889671+00:00'::timestamp valid_from_dttm
     
 from 
     "dbt_schema"."GPR_RV_E_CLIENT"

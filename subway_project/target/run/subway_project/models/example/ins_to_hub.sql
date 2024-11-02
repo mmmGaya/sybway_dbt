@@ -6,16 +6,18 @@
     
 
 SELECT 
-    'manual__2024-10-31T13:36:46.534879+00:00' dataflow_id,
-    '2024-10-31 13:36:46.534879+00:00'::timestamp dataflow_dttm,
+    'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+    '1960-01-01 00:00:00'::timestamp dataflow_dttm,
     oid source_system_dk,
-    md5(id || '#' || oid) client_rk,
-    id || '#' || oid hub_key
+    md5(  id || '#' ||   oid) client_rk,
+     id || '#' ||   oid hub_key
+    -- md5(id || '#' || oid) client_rk,
+    -- id || '#' || oid hub_key
 FROM 
     "postgres"."dbt_schema"."ods_client_cut"  ods
 	LEFT JOIN 
 	"dbt_schema"."GPR_RV_H_CLIENT" h_cl
-	ON md5(ods.id || '#' || ods.oid) = h_cl.client_rk
+	ON md5(  ods.id || '#' ||   ods.oid) = h_cl.client_rk
 WHERE h_cl.client_rk IS NULL
 
 
@@ -23,8 +25,8 @@ WHERE h_cl.client_rk IS NULL
 
 
 -- SELECT 
---     'manual__2024-10-31T13:36:46.534879+00:00' dataflow_id,
---     '2024-10-31 13:36:46.534879+00:00'::timestamp dataflow_dttm,
+--     'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+--     '1960-01-01 00:00:00'::timestamp dataflow_dttm,
 --     oid source_system_dk,
 --     md5(id || '#' || oid) client_rk,
 --     id || '#' || oid hub_key
