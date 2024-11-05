@@ -1,7 +1,8 @@
-{% macro select_all_columns_macro(table_name, source_table, pks_source_table, entity_key, args=(, )) %}
+{% macro select_all_columns_macro(table_name, source_table, pks_source_table, entity_key, args=( )) %}
+
 
 select 
-    {% if table_name|slice(21, 1) == 'E' %}
+    {% if table_name[21:22] == 'E' %}
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         hashdiff_key,
@@ -20,7 +21,8 @@ select
         1 actual_flg,
         1 delete_flg,
         {% for i in args %}
-            {{ i }},
+            {{ i }}
+            {% if not loop.last %}, {% endif %}
         {% endfor %}
     {% endif %}
 from 

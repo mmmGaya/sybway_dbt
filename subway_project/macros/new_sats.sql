@@ -1,13 +1,13 @@
 
 
-{% macro select_modif_sals(table_name) %}
+{% macro select_modif_sals(table_name, source_table, pks_source_table, entity_key, args_source_tab=( )) %}
 
 select 
-    {% if table_name == '"dbt_schema"."GPR_RV_E_CLIENT"' %}
+    {% if table_name[21:22] == 'E' %}
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
-        md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key,
-        md5(id || '#' || oid) client_rk,
+        md5( {% for i in args_source_tab %} {{ i }}{% if not loop.last %} || '#' || {% endif %}{% endfor %} ) hashdiff_key,
+        md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) client_rk,
         0 delete_flg,
         1 actual_flg, 
         oid source_system_dk,
@@ -16,33 +16,32 @@ select
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         oid source_system_dk, 
-        md5(id|| '#' || oid) client_rk, 
+        md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) client_rk, 
         '{{ var('execution_date') }}'::timestamp valid_from_dttm, 
-        md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key,
+        md5( {% for i in args_source_tab %} {{ i }}{% if not loop.last %} || '#' || {% endif %}{% endfor %} ) hashdiff_key,
         1 actual_flg,
         0 delete_flg,
-        name client_name_desc,
-        phone client_phone_desc,
-        city client_city_desc,
-        birthday client_city_dt,
-        age client_age_cnt
+        {% for i in args_source_tab %}
+            {{ i }}
+            {% if not loop.last %}, {% endif %}
+        {% endfor %}
     {% endif %}
 from 
-	{{ref('ods_client_cut')}}
-where md5(id || '#' || oid) in
+	{{ref( source_table )}}
+where md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) in
 (
 select 
-	client_rk
+	{{ entity_key }}
 from
 	(
 	select 
-		md5(id || '#' || oid) client_rk, 
-		md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key 
+		md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) client_rk, 
+		md5( {% for i in args_source_tab %} {{ i }}{% if not loop.last %} || '#' ||{% endif %}{% endfor %} ) hashdiff_key 
 	from 
-	{{ref('ods_client_cut')}}  
+	    {{ref( source_table )}}
 	except
 	select 
-		client_rk, 
+		{{ entity_key }}, 
 		hashdiff_key   
 	from 
 		 {{ table_name }} where actual_flg = 1 and delete_flg = 0)

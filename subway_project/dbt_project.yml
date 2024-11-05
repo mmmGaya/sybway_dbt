@@ -40,4 +40,4 @@ models:
     example:
       +materialized: view
     subway_firebird:
-      +materialized: table
+      +materialized: view

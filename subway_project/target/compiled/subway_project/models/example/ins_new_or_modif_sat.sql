@@ -2,33 +2,44 @@
 
 select 
     
-        'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
-        '1960-01-01 00:00:00'::timestamp dataflow_dttm,
+        'manual__2024-11-05T10:09:21.817848+00:00' dataflow_id,
+        '2024-11-05 10:09:21.817848+00:00'::timestamp dataflow_dttm,
         oid source_system_dk, 
-        md5(id|| '#' || oid) client_rk, 
-        '1960-01-01 00:00:00'::timestamp valid_from_dttm, 
-        md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key,
+        md5(  id || '#' ||   oid) client_rk, 
+        '2024-11-05 10:09:21.817848+00:00'::timestamp valid_from_dttm, 
+        md5(  name || '#' ||  phone || '#' ||  city || '#' ||  birthday || '#' ||  age ) hashdiff_key,
         1 actual_flg,
         0 delete_flg,
-        name client_name_desc,
-        phone client_phone_desc,
-        city client_city_desc,
-        birthday client_city_dt,
-        age client_age_cnt
+        
+            name
+            , 
+        
+            phone
+            , 
+        
+            city
+            , 
+        
+            birthday
+            , 
+        
+            age
+            
+        
     
 from 
 	"postgres"."dbt_schema"."ods_client_cut"
-where md5(id || '#' || oid) in
+where md5(  id || '#' ||   oid) in
 (
 select 
 	client_rk
 from
 	(
 	select 
-		md5(id || '#' || oid) client_rk, 
-		md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key 
+		md5(  id || '#' ||   oid) client_rk, 
+		md5(  name || '#' || phone || '#' || city || '#' || birthday || '#' || age ) hashdiff_key 
 	from 
-	"postgres"."dbt_schema"."ods_client_cut"  
+	    "postgres"."dbt_schema"."ods_client_cut"
 	except
 	select 
 		client_rk, 
