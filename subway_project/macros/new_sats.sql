@@ -7,7 +7,7 @@ select
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         md5( {% for i in args_source_tab %} {{ i }}{% if not loop.last %} || '#' || {% endif %}{% endfor %} ) hashdiff_key,
-        md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) client_rk,
+        md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) {{entity_key}},
         0 delete_flg,
         1 actual_flg, 
         oid source_system_dk,
@@ -16,7 +16,7 @@ select
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         oid source_system_dk, 
-        md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) client_rk, 
+        md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) {{entity_key}}, 
         '{{ var('execution_date') }}'::timestamp valid_from_dttm, 
         md5( {% for i in args_source_tab %} {{ i }}{% if not loop.last %} || '#' || {% endif %}{% endfor %} ) hashdiff_key,
         1 actual_flg,
@@ -35,7 +35,7 @@ select
 from
 	(
 	select 
-		md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) client_rk, 
+		md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) {{entity_key}}, 
 		md5( {% for i in args_source_tab %} {{ i }}{% if not loop.last %} || '#' ||{% endif %}{% endfor %} ) hashdiff_key 
 	from 
 	    {{ref( source_table )}}
