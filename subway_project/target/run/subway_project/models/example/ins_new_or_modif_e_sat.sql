@@ -7,14 +7,14 @@
 
 select 
     
-        'manual__2024-11-02T11:57:26.310307+00:00' dataflow_id,
-        '2024-11-02 11:57:26.310307+00:00'::timestamp dataflow_dttm,
+        'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+        '1960-01-01 00:00:00'::timestamp dataflow_dttm,
         md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key,
         md5(id || '#' || oid) client_rk,
         0 delete_flg,
         1 actual_flg, 
         oid source_system_dk,
-        '2024-11-02 11:57:26.310307+00:00'::timestamp valid_from_dttm
+        '1960-01-01 00:00:00'::timestamp valid_from_dttm
     
 from 
 	"postgres"."dbt_schema"."ods_client_cut"

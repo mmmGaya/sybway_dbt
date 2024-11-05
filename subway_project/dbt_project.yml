@@ -9,7 +9,6 @@ version: '1.0.0'
 vars:
     run_id : 'scheduled__1960-01-01T00:00:00+00:00'
     execution_date : '1960-01-01 00:00:00'
-    name_source_tab : "{{ ref( 'ods_client_cut' ) }}"
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'subway_project'
@@ -37,8 +36,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   # Config indicated by + and applies to all files under models/example/
-  example:
-    +materialized: view
-  subway_firebird:
-    +materialized: table
-    +full_refresh: false
+  subway_project:
+    example:
+      +materialized: view
+    subway_firebird:
+      +materialized: table

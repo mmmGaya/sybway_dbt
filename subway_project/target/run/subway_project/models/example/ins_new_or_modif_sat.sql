@@ -7,11 +7,11 @@
 
 select 
     
-        'manual__2024-11-02T11:57:26.310307+00:00' dataflow_id,
-        '2024-11-02 11:57:26.310307+00:00'::timestamp dataflow_dttm,
+        'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+        '1960-01-01 00:00:00'::timestamp dataflow_dttm,
         oid source_system_dk, 
         md5(id|| '#' || oid) client_rk, 
-        '2024-11-02 11:57:26.310307+00:00'::timestamp valid_from_dttm, 
+        '1960-01-01 00:00:00'::timestamp valid_from_dttm, 
         md5(name || '#' || phone || '#' || city || '#' || birthday || '#' || age) hashdiff_key,
         1 actual_flg,
         0 delete_flg,
