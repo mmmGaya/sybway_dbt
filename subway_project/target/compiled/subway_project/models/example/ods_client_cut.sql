@@ -1,3 +1,3 @@
 
 
-select * from ods_client_csv where execution_date = '2024-11-05 10:09:21.817848+00:00'
+select * from ods_client_csv where execution_date = '2024-11-08 11:17:22.124220+00:00'

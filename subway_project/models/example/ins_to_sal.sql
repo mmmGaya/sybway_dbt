@@ -12,7 +12,7 @@ from
 		dbt_schema."GPR_RV_S_CLIENT" s1
 		join 
 		dbt_schema."GPR_RV_S_CLIENT" s2
-		on s1.client_name_desc = s2.client_name_desc and s1.client_phone_desc = s2.client_phone_desc
+		on s1.client_name_desc = s2.client_name_desc and s1.client_city_dt = s2.client_city_dt
 	where s1.client_rk in 
 		(
 		select client_rk from dbt_schema."GPR_RV_H_CLIENT"
