@@ -1,7 +1,7 @@
-version: 2
+version: '1.0.0'
 
 macros:
-  - name: m_hub
+  - name: ins_hub_macros
     description: Макрос для вставки md5, которых еще нет
     arguments:
       - name: hub_table
@@ -12,4 +12,4 @@ macros:
         description: название dbt модели, которая является источником для новых md5
       - name: key_join
         type: string
-        description: ?
+        description: название столбца, в котором хранится md5, то есть rk хаба

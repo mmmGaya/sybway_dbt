@@ -1,7 +1,7 @@
 with sys_code as (select max(oid) soid from ods_client_csv)
 
 select '{{ var('run_id') }}' run_id, '{{ var('execution_date') }}'::timestamp execution_date, 
-	    md5(id_operation || '#' || id_seller || '#' || client_rk || '#' || id_product || '#' || coalesce(id_product_connection, -1) || '#' || sel_dttm || '#' || tovar_group || '#' || oid) receip_rk, -- Подставили атрибуты вместо ключей, как заглушка, пока нет измерений
+	    md5(id_operation || '#' || id_seller || '#' || client_rk || '#' || id_product || '#' || id_product_connection || '#' || sel_dttm || '#' || tovar_group || '#' || oid) receip_rk, -- Подставили атрибуты вместо ключей, как заглушка, пока нет измерений
 	    md5(id_seller || '#' || oid) shop_rk, -- Заглушка, пока нет сущности в проекте
 		client_rk, 
 		md5(id_product || '#' || oid) plu_rk, -- Заглушка, пока нет сущности в проекте
@@ -12,6 +12,6 @@ select '{{ var('run_id') }}' run_id, '{{ var('execution_date') }}'::timestamp ex
 from {{ref('ods_receipt_post_cut')}} tt
 join dbt_schema."GPR_RV_H_CLIENT" hc on regexp_instr(hc.hub_key, tt.id_buyer || '#') = 1
 cross join sys_code sc 
-where hc.hub_key like '%#' || soid;
+where hc.hub_key like '%#' || soid
 
 --depends on {{ref('ods_receipt_post_cut')}}

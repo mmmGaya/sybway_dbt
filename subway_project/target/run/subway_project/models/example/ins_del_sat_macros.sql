@@ -8,11 +8,11 @@
 
 select 
     
-        'manual__2024-11-08T11:17:22.124220+00:00' dataflow_id,
-        '2024-11-08 11:17:22.124220+00:00'::timestamp dataflow_dttm,
+        'manual__2024-11-11T12:34:34.119103+00:00' dataflow_id,
+        '2024-11-11 12:34:34.119103+00:00'::timestamp dataflow_dttm,
         source_system_dk, 
         client_rk, 
-        '2024-11-08 11:17:22.124220+00:00'::timestamp valid_from_dttm, 
+        '2024-11-11 12:34:34.119103+00:00'::timestamp valid_from_dttm, 
         hashdiff_key,
         1 actual_flg,
         1 delete_flg,
