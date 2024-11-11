@@ -1,0 +1,15 @@
+version: 2
+
+macros:
+  - name: m_hub
+    description: Макрос для вставки md5, которых еще нет
+    arguments:
+      - name: hub_table
+        type: string
+        description: Название таблицы хаба в row vault
+      - name: source_table
+        type: string
+        description: название dbt модели, которая является источником для новых md5
+      - name: key_join
+        type: string
+        description: ?

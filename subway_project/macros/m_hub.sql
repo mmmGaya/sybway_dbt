@@ -1,4 +1,3 @@
-
 {% macro ins_hub_macros(hub_table, source_table,  key_join, args) %}
 
 SELECT 

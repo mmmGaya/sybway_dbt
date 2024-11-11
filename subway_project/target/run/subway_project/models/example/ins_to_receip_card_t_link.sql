@@ -3,8 +3,8 @@
     
     
   as (
-    select 'manual__2024-11-08T12:06:37.788085+00:00' run_id, '2024-11-08 12:06:37.788085+00:00'::timestamp execution_date, 
-	    md5(id_operation || '#' || id_seller || '#' || client_rk || '#' || id_product || '#' || coalesce(id_product_connection, -1) || '#' || sel_dttm || '#' || tovar_group || '#' || oid) receip_rk,
+    select 'manual__2024-11-08T13:46:43.406463+00:00' run_id, '2024-11-08 13:46:43.406463+00:00'::timestamp execution_date, 
+	    md5(id_operation || '#' || id_seller || '#' || client_rk || '#' || id_product || '#' || coalesce(id_product_connection, -1) || '#' || sel_dttm || '#' || tovar_group || '#' || oid) receip_rk, -- Подставили атрибуты вместо ключей, как заглушка, пока нет измерений
 	    md5(id_seller || '#' || oid) shop_rk, -- Заглушка, пока нет сущности в проекте
 		client_rk, 
 		md5(id_product || '#' || oid) plu_rk, -- Заглушка, пока нет сущности в проекте
