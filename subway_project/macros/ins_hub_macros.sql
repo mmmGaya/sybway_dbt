@@ -4,9 +4,8 @@ SELECT
     '{{ var('run_id') }}' dataflow_id,
     '{{ var('execution_date') }}'::timestamp dataflow_dttm,
     oid source_system_dk,
-    md5( {% for i in args %} {{ i }} || '#' || {% endfor %}  oid) client_rk,
+    md5( {% for i in args %} {{ i }} || '#' || {% endfor %}  oid) {{ key_join }},
     {% for i in args %} {{ i }} || '#' || {% endfor %}  oid hub_key
- 
 FROM 
     {{ ref( source_table  ) }}  ods
 	LEFT JOIN 

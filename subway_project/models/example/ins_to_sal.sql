@@ -9,10 +9,10 @@ from
 		distinct s1.client_rk x_client_rk,
 		first_value(s2.client_rk) over(partition by s1.client_rk order by s2.valid_from_dttm, s2.client_rk) client_rk
 	from 
-		dbt_schema."GPR_RV_S_CLIENT" s1
+		dbt_schema."GPR_RV_M_CLIENT_SUBWAY_STAR" s1
 		join 
-		dbt_schema."GPR_RV_S_CLIENT" s2
-		on s1.client_name_desc = s2.client_name_desc and s1.client_city_dt = s2.client_city_dt
+		dbt_schema."GPR_RV_M_CLIENT_SUBWAY_STAR" s2
+		on s1.name_desc = s2.name_desc and s1.birthday_dt = s2.birthday_dt
 	where s1.client_rk in 
 		(
 		select client_rk from dbt_schema."GPR_RV_H_CLIENT"

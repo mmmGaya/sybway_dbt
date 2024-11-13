@@ -3,8 +3,8 @@
     
     
   as (
-    select 'manual__2024-11-08T11:17:22.124220+00:00' dataflow_id,
-       '2024-11-08 11:17:22.124220+00:00'::timestamp dataflow_dttm, 
+    select 'manual__2024-11-11T12:34:34.119103+00:00' dataflow_id,
+       '2024-11-11 12:34:34.119103+00:00'::timestamp dataflow_dttm, 
        client_rk, 
        mx_dt valid_from_dttm,
        to_timestamp( '5999-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss') valid_to_dttm,

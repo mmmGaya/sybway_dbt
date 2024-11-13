@@ -2,7 +2,7 @@ select dataflow_id, dataflow_dttm,
        client_rk, valid_from_dttm, valid_to_dttm,
        client_subway_star_vf_dttm
 from
-    (select 'manual__2024-11-08T11:17:22.124220+00:00' dataflow_id, '2024-11-08 11:17:22.124220+00:00'::timestamp dataflow_dttm, 
+    (select 'scheduled__1960-01-01T00:00:00+00:00' dataflow_id, '1960-01-01 00:00:00'::timestamp dataflow_dttm, 
         client_rk, 
         to_timestamp( '1960-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss') valid_from_dttm,
         mx_dt - interval '1 minute' valid_to_dttm,
@@ -12,7 +12,7 @@ from
     group by ac.client_rk)
     where client_rk not in (select client_rk from dbt_schema."GPR_BV_P_CLIENT")
     union
-    select 'manual__2024-11-08T11:17:22.124220+00:00' dataflow_id, '2024-11-08 11:17:22.124220+00:00'::timestamp dataflow_dttm,
+    select 'scheduled__1960-01-01T00:00:00+00:00' dataflow_id, '1960-01-01 00:00:00'::timestamp dataflow_dttm,
         client_rk, 
         mx_dt valid_from_dttm,
         to_timestamp( '5999-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss') valid_to_dttm,

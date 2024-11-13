@@ -1,8 +1,11 @@
 version: '1.0.0'
 
+# здесь хранится описание макросов
+# если вы создали новый макрос, пожалуйста, опишите его примерно как снизу
+
 macros:
   - name: ins_hub_macros
-    description: Макрос для вставки md5, которых еще нет
+    description: Макрос для вставки md5, которых еще нет.
     arguments:
       - name: hub_table
         type: string
@@ -13,3 +16,6 @@ macros:
       - name: key_join
         type: string
         description: название столбца, в котором хранится md5, то есть rk хаба
+      - name: args
+        type: tuple из string`ов
+        description: названия полей, которые используются в генерации rk md5 

@@ -2,11 +2,11 @@
 
 select 
     
-        'manual__2024-11-05T13:39:02.919510+00:00' dataflow_id,
-        '2024-11-05 13:39:02.919510+00:00'::timestamp dataflow_dttm,
+        'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+        '1960-01-01 00:00:00'::timestamp dataflow_dttm,
         oid source_system_dk, 
         md5(  id || '#' ||   oid) card_rk, 
-        '2024-11-05 13:39:02.919510+00:00'::timestamp valid_from_dttm, 
+        '1960-01-01 00:00:00'::timestamp valid_from_dttm, 
         md5(  card_num || '#' ||  service_name || '#' ||  discount ) hashdiff_key,
         1 actual_flg,
         0 delete_flg,
