@@ -1,14 +1,13 @@
 
 
-
 select 
     
-        'manual__2024-11-13T11:17:04.032278+00:00' dataflow_id,
-        '2024-11-13 11:17:04.032278+00:00'::timestamp dataflow_dttm,
+        'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
+        '1960-01-01 00:00:00'::timestamp dataflow_dttm,
         source_system_dk, 
         client_rk,
 	row_num, 
-        '2024-11-13 11:17:04.032278+00:00'::timestamp valid_from_dttm, 
+        '1960-01-01 00:00:00'::timestamp valid_from_dttm, 
         hashdiff_key,
         1 actual_flg,
         1 delete_flg,

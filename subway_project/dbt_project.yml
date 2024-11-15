@@ -41,7 +41,3 @@ models:
       +materialized: view
     subway_firebird:
       +materialized: view
-    subway_firebird:
-      hubs:
-        client:
-          +materialized: view

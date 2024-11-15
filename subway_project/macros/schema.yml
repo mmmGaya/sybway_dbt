@@ -1,11 +1,11 @@
 version: '1.0.0'
 
-# здесь хранится описание макросов
+# здесь хранятся описания макросов
 # если вы создали новый макрос, пожалуйста, опишите его примерно как снизу
 
 macros:
   - name: ins_hub_macros
-    description: Макрос для вставки md5, которых еще нет.
+    description: Макрос для вставки md5, которых еще нет в хабе.
     arguments:
       - name: hub_table
         type: string
@@ -18,4 +18,48 @@ macros:
         description: название столбца, в котором хранится md5, то есть rk хаба
       - name: args
         type: tuple из string`ов
-        description: названия полей, которые используются в генерации rk md5 
+        description: названия полей, которые используются в генерации rk md5
+  
+  - name: select_modif_m_sat
+    description: Макрос для вставки новых или измененных записей в м сат.
+    arguments:
+      - name: table_name
+        type: string
+        description: название таблицы м сата, в которую хотим вставить новые или измененные строки
+      - name: source_table
+        type: string
+        description: название таблицы источника - по сути сейчас берем данные из подрезок
+      - name: pks_entity_source
+        type: tuple из string`ов
+        description: поля из таблицы источника, по которым строится внешний ключ - ключ сущность rk
+      - name: entity_key
+        type: string
+        description: название поля в котором хранится rk сущность в таргете - м сате
+      - name: logical_keys
+        type: tuple из string`ов
+        description: поля из таблицы источника по которым определяются группы - то есть по сути это логические ключи
+      - name: type_key_field
+        type: string
+        description: поле, по которому уникально идентифицируются строки в группе строк - row_num, row_type_code или другое
+      - name: attrs_source
+        type: tuple из string`ов
+        description: названия всех полей атрибутов из источника - таблица подрезки
+      - name: attrs_sat
+        type: tuple из string`ов
+        description: названия всех полей атрибутов из таргета - м сата
+
+  - name: ins_sal_macros
+    description: Макрос для вставки новых или измененных записей в sal.
+    arguments:
+      - name: sat_table
+        type: string
+        description: название таблицы dbt модели satellite, в которой хранятся атрибуты rk, и логические ключи, собранные со всех sattelite по сущности
+      - name: dim_name
+        type: string
+        description: имя сущности, которую унифицируем (капсом)
+      - name: key_join
+        type: string
+        description: название поля в котором хранится rk сущности
+      - name: args
+        type: tuple из string`ов
+        description: поля из таблицы источника по которым определяются группы - то есть по сути это логические ключи

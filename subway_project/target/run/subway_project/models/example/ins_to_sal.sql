@@ -4,8 +4,8 @@
     
   as (
     select 
-	'manual__2024-11-13T11:17:04.032278+00:00' dataflow_id,
-    '2024-11-13 11:17:04.032278+00:00'::timestamp dataflow_dttm,
+	'manual__2024-11-13T12:27:27.284808+00:00' dataflow_id,
+    '2024-11-13 12:27:27.284808+00:00'::timestamp dataflow_dttm,
     client_rk,
     x_client_rk
 from

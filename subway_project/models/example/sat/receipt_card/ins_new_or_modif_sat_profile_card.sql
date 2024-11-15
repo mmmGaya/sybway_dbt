@@ -1,0 +1,4 @@
+{{ select_modif_sals('"dbt_schema"."GPR_RV_S_PROFILE_CARD_POST"', 'ods_cut_client_profile_card_post_pg', ("id", ), "card_rk", ("card_num", "service_name", "discount")) }}
+
+--depends on {{ ref('ods_cut_client_profile_card_post_pg') }}
+

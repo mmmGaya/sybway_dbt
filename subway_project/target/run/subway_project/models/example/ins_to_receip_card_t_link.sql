@@ -5,7 +5,7 @@
   as (
     with sys_code as (select max(oid) soid from ods_client_csv)
 
-select 'manual__2024-11-13T11:17:00.526002+00:00' run_id, '2024-11-13 11:17:00.526002+00:00'::timestamp execution_date, 
+select 'manual__2024-11-13T13:31:33.618571+00:00' run_id, '2024-11-13 13:31:33.618571+00:00'::timestamp execution_date, 
 	    md5(id_operation || '#' || id_seller || '#' || client_rk || '#' || id_product || '#' || id_product_connection || '#' || sel_dttm || '#' || tovar_group || '#' || oid) receip_rk, -- Подставили атрибуты вместо ключей, как заглушка, пока нет измерений
 	    md5(id_seller || '#' || oid) shop_rk, -- Заглушка, пока нет сущности в проекте
 		client_rk, 
@@ -17,7 +17,7 @@ select 'manual__2024-11-13T11:17:00.526002+00:00' run_id, '2024-11-13 11:17:00.5
 from "postgres"."dbt_schema"."ods_receipt_post_cut" tt
 join dbt_schema."GPR_RV_H_CLIENT" hc on regexp_instr(hc.hub_key, tt.id_buyer || '#') = 1
 cross join sys_code sc 
-where hc.hub_key like '%#' || soid
+where hc.hub_key like '%#' || soid and id_operation not in (select receip_num_cnt from dbt_schema."GPR_RV_T_RECEIPT_POST")
 
 --depends on "postgres"."dbt_schema"."ods_receipt_post_cut"
   );
