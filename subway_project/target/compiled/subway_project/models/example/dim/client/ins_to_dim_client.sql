@@ -1,4 +1,4 @@
-select 'scheduled__1960-01-01T00:00:00+00:00' dataflow_id, '1960-01-01 00:00:00'::timestamp dataflow_dttm,
+select 'scheduled__1960-01-01T00:00:00+00:00' dataflow_id, '2024-11-20 10:43:48.001325+00:00'::timestamp dataflow_dttm,
 		client_rk, valid_from_dttm, valid_to_dttm, 
 	    client_name_desc, client_phone_desc, client_city_desc, client_birthday_dt, client_age_cnt
 from

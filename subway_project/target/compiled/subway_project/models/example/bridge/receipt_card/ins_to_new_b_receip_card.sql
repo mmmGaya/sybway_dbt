@@ -24,6 +24,7 @@ where
 		select 
 			client_rk,
 			md5(card_cnt || '#' || '3055104511' ) card_hash ,
+			card_cnt,
 			max(dataflow_dttm) dataflow_dttm 
 		from 
 			dbt_schema."GPR_RV_T_RECEIPT_POST" group by client_rk, card_cnt
@@ -33,20 +34,22 @@ where
 
 select 
     'scheduled__1960-01-01T00:00:00+00:00' dataflow_id , 
-    '1960-01-01 00:00:00'::timestamp dataflow_dttm, 
+    '2024-11-20 10:43:48.001325+00:00'::timestamp dataflow_dttm, 
 	card_hash card_tech_key,
-	'1960-01-01 00:00:00'::timestamp valid_from_dttm , 
+	'2024-11-20 10:43:48.001325+00:00'::timestamp valid_from_dttm , 
 	s_cl.name_desc client_name_desc,
 	case 
 		when phone_cnt = 1 then s_cl.phone_desc
 		else null
-	end phone_desc client_phone_desc,
+	end  client_phone_desc,
 	s_cl.city_desc client_city_desc,
 	s_cl.birthday_dt client_birthday_dt,
-	s_cl.age_cnt client_age_cnt
+	s_cl.age_cnt client_age_cnt,
+	t_nw.card_cnt client_card_cnt
 from 
 	(select 
 		ct.card_hash,
+		ct.card_cnt,
 		ct.client_rk
 	from 
 		cut_transaction ct

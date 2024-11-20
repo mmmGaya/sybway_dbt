@@ -60,7 +60,7 @@ with rn_hash_diff_from_source as (
         ,md5(  id || '#' ||   oid) client_rk 
         -- выводим номера строк в группе
         -- получаем значение для поля valid_from_dttm
-        , '2024-11-15 08:02:07.257110+00:00'::timestamp valid_from_dttm
+        , '2024-11-20 10:43:48.001325+00:00'::timestamp valid_from_dttm
         -- формируем hash_diff из всех значений всех столбцов в группе
         -- TODO
         , md5(
@@ -111,17 +111,25 @@ with rn_hash_diff_from_source as (
                     order by row_num
                     rows between unbounded preceding and unbounded following
                 ) || '#' ||
-             row_num            
+             string_agg(row_num::varchar, '#') over(
+                -- разбиваем окно на партиции по ключам разбиения
+                partition by  birthday ,  name 
+                -- сортируем строки по row_num
+                -- TODO - REVIEW AND TESTS
+                order by row_num
+                rows between unbounded preceding and unbounded following
+            )          
         ) hashdiff_key
     from 
 	    rn_hash_diff_from_source
 )
 select
-	'manual__2024-11-15T08:02:07.257110+00:00' dataflow_id
-    , '2024-11-15 08:02:07.257110+00:00'::timestamp dataflow_dttm
+	'manual__2024-11-20T10:43:48.001325+00:00' dataflow_id
+    , '2024-11-20 10:43:48.001325+00:00'::timestamp dataflow_dttm
     , oid source_system_dk
     , client_rk
     , row_num
+    , valid_from_dttm
     , hashdiff_key
     , 1 actual_flg
     , 0 delete_flg

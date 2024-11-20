@@ -21,6 +21,7 @@ where
  		select 
 			client_rk,
 			md5(card_cnt || '#' || '3055104511' ) card_hash ,
+			card_cnt ,
 			max(dataflow_dttm) dataflow_dttm 
 		from 
 			dbt_schema."GPR_RV_T_RECEIPT_POST" group by client_rk, card_cnt
@@ -37,7 +38,8 @@ select
 	s_cl.phone_desc client_phone_desc,
 	s_cl.city_desc client_city_desc,
 	s_cl.birthday_dt client_birthday_dt,
-	s_cl.age_cnt client_age_cnt
+	s_cl.age_cnt client_age_cnt,
+	used_card.card_cnt client_card_cnt
 
 FROM 
 	(cut_transaction ct

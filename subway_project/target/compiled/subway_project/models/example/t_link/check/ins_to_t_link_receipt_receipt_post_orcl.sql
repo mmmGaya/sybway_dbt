@@ -1,6 +1,6 @@
 with sys_code as (select max(oid) soid from ods_client_csv)
 
-select 'scheduled__1960-01-01T00:00:00+00:00' run_id, '1960-01-01 00:00:00'::timestamp execution_date, 
+select 'scheduled__1960-01-01T00:00:00+00:00' run_id, '2024-11-20 10:43:48.001325+00:00'::timestamp execution_date, 
 	    md5(id_operation || '#' || id_seller || '#' || client_rk || '#' || id_product || '#' || id_product_connection || '#' || sel_dttm || '#' || tovar_group || '#' || oid) receip_rk, -- Подставили атрибуты вместо ключей, как заглушка, пока нет измерений
 	    md5(id_seller || '#' || oid) shop_rk, -- Заглушка, пока нет сущности в проекте
 		client_rk, 

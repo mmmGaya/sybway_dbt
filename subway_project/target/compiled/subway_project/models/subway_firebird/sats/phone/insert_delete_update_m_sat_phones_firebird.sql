@@ -4,6 +4,7 @@ select
     , source_system_dk
     , client_rk
     , valid_from_dttm
+    , row_num
     , hashdiff_key
     , actual_flg
     , delete_flg
@@ -18,6 +19,7 @@ select
     , dataflow_dttm
     , source_system_dk
     , client_rk
+    , valid_from_dttm
     , row_num
     , hashdiff_key
     , actual_flg
@@ -27,3 +29,6 @@ select
     , question2
     , question3
  from "postgres"."dbt_schema"."insert_update_m_sat_phones_firebird"
+
+--depends on "postgres"."dbt_schema"."insert_delete_m_sat_phones_firebird"
+--depends on "postgres"."dbt_schema"."insert_update_m_sat_phones_firebird"

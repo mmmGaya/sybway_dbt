@@ -1,1 +1,1 @@
-select * from dbt_schema.ods_firebird_client where dttm = '1960-01-01 00:00:00'
+select * from dbt_schema.ods_firebird_client where dttm = '2024-11-20 10:43:48.001325+00:00'

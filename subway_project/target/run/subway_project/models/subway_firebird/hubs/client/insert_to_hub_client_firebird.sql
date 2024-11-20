@@ -7,8 +7,8 @@
 
 
 SELECT 
-    'manual__2024-11-13T12:40:39.905320+00:00' dataflow_id,
-    '2024-11-13 12:40:39.905320+00:00'::timestamp dataflow_dttm,
+    'manual__2024-11-18T13:54:03.436282+00:00' dataflow_id,
+    '2024-11-18 13:54:03.436282+00:00'::timestamp dataflow_dttm,
     oid source_system_dk,
     md5(  id || '#' ||   oid) client_rk,
      id || '#' ||   oid hub_key

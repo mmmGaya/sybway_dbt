@@ -1,1 +1,0 @@
-{{ union_sat_datas( (('dbt_schema."GPR_RV_M_CLIENT_PROFILE_POST"', "client_rk", "fio_desc", "birthday_dt"), ('dbt_schema."GPR_RV_M_CLIENT_SUBWAY_STAR"', "client_rk", "name_desc", "birthday_dt")), ("name_desc", "birthday_dt")  )}}

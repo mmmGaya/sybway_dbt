@@ -63,3 +63,31 @@ macros:
       - name: args
         type: tuple из string`ов
         description: поля из таблицы источника по которым определяются группы - то есть по сути это логические ключи
+  
+  - name: ins_pit_new_macros
+    description: Макрос для вставки новых записей в pit.
+    arguments:
+      - name: dim_name
+        type: string
+        description: имя сущности (капсом)
+      - name: tables_field_m_name
+        type: tuple из string`ов
+        description: перечень названий таблиц M_Satellite и их полей в Pit таблице для dttm из M_Satellite
+      - name: entity_key
+        type: string
+        description: название поля в котором хранится rk сущности
+
+  - name: ins_pit_modif_macros
+    description: Макрос для вставки модифицированных записей в pit.
+    arguments:
+      - name: dim_name
+        type: string
+        description: имя сущности (капсом)
+      - name: tables_field_m_name
+        type: tuple из string`ов
+        description: перечень названий таблиц M_Satellite и их полей в Pit таблице для dttm из M_Satellite
+      - name: entity_key
+        type: string
+        description: название поля в котором хранится rk сущности
+
+  

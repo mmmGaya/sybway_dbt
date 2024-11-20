@@ -6,8 +6,8 @@
     
 
 select 
-	'scheduled__1960-01-01T00:00:00+00:00' dataflow_id,
-    '1960-01-01 00:00:00'::timestamp dataflow_dttm,
+	'manual__2024-11-20T10:43:48.001325+00:00' dataflow_id,
+    '2024-11-20 10:43:48.001325+00:00'::timestamp dataflow_dttm,
     client_rk,
     x_client_rk
 from

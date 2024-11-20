@@ -78,7 +78,14 @@ with rn_hash_diff_from_source as (
                     order by {{type_key_field}}
                     rows between unbounded preceding and unbounded following
                 ) || '#' ||
-            {% endfor %} {{type_key_field}}            
+            {% endfor %} string_agg({{type_key_field}}::varchar, '#') over(
+                -- разбиваем окно на партиции по ключам разбиения
+                partition by {% for logical_key in logical_keys %} {{ logical_key }} {% if not loop.last %}, {% endif %}{% endfor %}
+                -- сортируем строки по {{type_key_field}}
+                -- TODO - REVIEW AND TESTS
+                order by {{type_key_field}}
+                rows between unbounded preceding and unbounded following
+            )          
         ) hashdiff_key
     from 
 	    rn_hash_diff_from_source
@@ -89,6 +96,7 @@ select
     , oid source_system_dk
     , {{entity_key}}
     , {{type_key_field}}
+    , valid_from_dttm
     , hashdiff_key
     , 1 actual_flg
     , 0 delete_flg
