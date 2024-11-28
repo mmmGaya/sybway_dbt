@@ -11,7 +11,7 @@ select dataflow_id, dataflow_dttm,
         "row_num",
         ("name_desc", "phone_desc", "city_desc", "birthday_dt", "age_cnt",),
 	("name_desc", "phone_desc", "city_desc", "birthday_dt", "age_cnt",),
-	("name", "phone", "city", "birthday", "age",)
+	("name", "phone", "city", "birthday", "age",), "M"
     ) }}
     union all
     select * from {{ ref('ins_modif_to_m_sat_client_client_from_star_orcl') }}

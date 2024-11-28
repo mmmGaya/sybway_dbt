@@ -6,7 +6,8 @@
     row_name, 
     args=( ),
     attrs_target=(),
-    attrs_source=()
+    attrs_source=(),
+    type_sat = ''
 )
 %} 
 
@@ -21,7 +22,7 @@
 
 -- макрос, который смотрит какие строки удалены
 select
-    {% if table_name[21:22] == 'E' %}
+    {% if type_sat == 'E' %}
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         hashdiff_key,
@@ -30,7 +31,7 @@ select
         1 actual_flg, 
         source_system_dk,
         '{{ var('execution_date') }}'::timestamp valid_from_dttm
-    {% elif table_name[21:22] == 'M' %}
+    {% elif type_sat == 'M' %}
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         source_system_dk, 
@@ -61,7 +62,7 @@ select
 from 
     {{ table_name }}
 where (
-    {% if table_name[21:22] == 'M' %}
+    {% if type_sat == 'M' %}
         {{ entity_key }}
         , 
         {% for attr in attrs_target %}
@@ -74,7 +75,7 @@ where (
     ) in
 (
 select 
-    {% if table_name[21:22] == 'M' %}
+    {% if type_sat == 'M' %}
         {{ entity_key }}
         , 
         {% for attr in attrs_target %}
@@ -88,7 +89,7 @@ from
 	(
 	select
         -- если сателит является мульти, то нужно также сравнивать со всеми бизнес атрибутами
-        {% if table_name[21:22] == 'M' %}
+        {% if type_sat == 'M' %}
             {{ entity_key }}
             , 
             {% for attr in attrs_target %}
@@ -99,12 +100,12 @@ from
             {{ entity_key }}
         {% endif %}
 	from 
-		{{ table_name }}
+		 {{ table_name }}
 	 where delete_flg = 0 and actual_flg = 1
     except
     select
         -- если сателит является мульти, то нужно также сравнивать со всеми бизнес атрибутами
-        {% if table_name[21:22] == 'M' %}
+        {% if type_sat == 'M' %}
             md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) entity_rk
             , 
             {% for attr in attrs_source %}

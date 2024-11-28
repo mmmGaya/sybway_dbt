@@ -9,7 +9,7 @@ SELECT
 FROM 
     {{ ref( source_table  ) }}  ods
 	LEFT JOIN 
-	{{ hub_table }} h_cl
+	{{hub_table}} h_cl
 	ON md5( {% for i in args %} ods.{{ i }} || '#' || {% endfor %}  ods.oid) = h_cl.{{ key_join }}
 WHERE h_cl.{{ key_join }} IS NULL
 

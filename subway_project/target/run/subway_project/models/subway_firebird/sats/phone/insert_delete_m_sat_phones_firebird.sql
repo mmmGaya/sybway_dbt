@@ -17,12 +17,12 @@
 -- макрос, который смотрит какие строки удалены
 select
     
-        'manual__2024-11-18T13:54:03.436282+00:00' dataflow_id,
-        '2024-11-18 13:54:03.436282+00:00'::timestamp dataflow_dttm,
+        'manual__2024-11-27T11:50:25.649364+00:00' dataflow_id,
+        '2024-11-27 11:50:25.649364+00:00'::timestamp dataflow_dttm,
         source_system_dk, 
         client_rk,
 	row_num, 
-        '2024-11-18 13:54:03.436282+00:00'::timestamp valid_from_dttm, 
+        '2024-11-27 11:50:25.649364+00:00'::timestamp valid_from_dttm, 
         hashdiff_key,
         1 actual_flg,
         1 delete_flg,
@@ -102,7 +102,7 @@ from
             
         
 	from 
-		"dbt_schema"."GPR_RV_M_CLIENT_PHONES"
+		 "dbt_schema"."GPR_RV_M_CLIENT_PHONES"
 	 where delete_flg = 0 and actual_flg = 1
     except
     select

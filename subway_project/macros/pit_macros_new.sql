@@ -14,7 +14,7 @@ with pit_new as (
             select {{entity_key}}, valid_from_dttm, source_system_dk 
             from {{tables_field_m_name[tables][0]}}
             where 
-            {% if tables_field_m_name[tables][0][21:22] == 'M'%} row_num = 1 and {% endif %}
+            {% if tables_field_m_name[tables][2] == 'M'%} row_num = 1 and {% endif %}
                 actual_flg = 1 
                 and delete_flg = 0 
                 and valid_from_dttm  = 

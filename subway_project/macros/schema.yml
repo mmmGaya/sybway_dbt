@@ -48,22 +48,6 @@ macros:
         type: tuple из string`ов
         description: названия всех полей атрибутов из таргета - м сата
 
-  - name: ins_sal_macros
-    description: Макрос для вставки новых или измененных записей в sal.
-    arguments:
-      - name: sat_table
-        type: string
-        description: название таблицы dbt модели satellite, в которой хранятся атрибуты rk, и логические ключи, собранные со всех sattelite по сущности
-      - name: dim_name
-        type: string
-        description: имя сущности, которую унифицируем (капсом)
-      - name: key_join
-        type: string
-        description: название поля в котором хранится rk сущности
-      - name: args
-        type: tuple из string`ов
-        description: поля из таблицы источника по которым определяются группы - то есть по сути это логические ключи
-  
   - name: ins_pit_new_macros
     description: Макрос для вставки новых записей в pit.
     arguments:
@@ -89,5 +73,18 @@ macros:
       - name: entity_key
         type: string
         description: название поля в котором хранится rk сущности
+
+    name: union_sat_datas
+    description: Макрос для объединения саттелитов сущности (используется в дальнейшем для sal).
+    arguments:
+      - name: mass_tables
+        type: tuple из tupl`ов string`ов
+        description: состоит из массивов, которые включают в себя название саттелита, столбцы логического ключа
+      - name: pseudo_col
+        type: tuple из string`ов
+        description: перечень псевдоназваний для колонок логического ключа
+      - name: dim
+        type: string
+        description: название сущности
 
   

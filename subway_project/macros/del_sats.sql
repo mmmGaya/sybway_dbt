@@ -1,8 +1,8 @@
-{% macro select_all_columns_macro(table_name, source_table, pks_source_table, entity_key, args=( )) %}
+{% macro select_all_columns_macro(table_name, source_table, pks_source_table, entity_key, args=( ), type_sat = '') %}
 
 
 select 
-    {% if table_name[21:22] == 'E' %}
+    {% if type_sat == 'E' %}
         '{{ var('run_id') }}' dataflow_id,
         '{{ var('execution_date') }}'::timestamp dataflow_dttm,
         hashdiff_key,
@@ -37,7 +37,7 @@ from
 		{{ entity_key }}
 	from 
 		{{ table_name }}
-	 where delete_flg = 0 and actual_flg = 1
+	 where delete_flg = 0 and actual_flg = 1 and source_system_dk = (select max(oid) from {{ ref( source_table ) }})
     except
     select 
 		md5( {% for i in pks_source_table %} {{ i }} || '#' || {% endfor %}  oid) entity_rk 

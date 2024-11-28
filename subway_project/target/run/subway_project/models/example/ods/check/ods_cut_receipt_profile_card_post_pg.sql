@@ -10,6 +10,6 @@
   (
     
 
-select * from ods_receipt_post where execution_date = '2024-11-18 08:44:21.921189+00:00'
+select * from ods_receipt_post where execution_date = '2024-11-22 11:45:23.346621+00:00'
   );
   

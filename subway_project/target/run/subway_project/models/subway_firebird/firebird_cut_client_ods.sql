@@ -3,5 +3,5 @@
     
     
   as (
-    select * from dbt_schema.ods_firebird_client where dttm = '2024-11-18 13:54:03.436282+00:00'
+    select * from dbt_schema.ods_firebird_client where dttm = '2024-11-27 11:50:25.649364+00:00'
   );

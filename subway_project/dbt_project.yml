@@ -9,6 +9,7 @@ version: '1.0.0'
 vars:
     run_id : 'scheduled__1960-01-01T00:00:00+00:00'
     execution_date : '1960-01-01 00:00:00'
+    order_by_source_system : 'array_position(array[3515641477,107023,2], s2.source_system_dk)'
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'subway_project'

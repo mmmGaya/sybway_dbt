@@ -6,7 +6,7 @@
     
 -- нумеруем строки внутри группы из источника
 with rn_hash_diff_from_source as ( 
-    select 
+    select
         -- выбираем все строки из источника
         source.*
 	    -- нумируем строки - поле row_num
@@ -60,7 +60,7 @@ with rn_hash_diff_from_source as (
         ,md5(  id || '#' ||   oid) client_rk 
         -- выводим номера строк в группе
         -- получаем значение для поля valid_from_dttm
-        , '2024-11-20 10:43:48.001325+00:00'::timestamp valid_from_dttm
+        , '2024-11-28 11:19:25.011076+00:00'::timestamp valid_from_dttm
         -- формируем hash_diff из всех значений всех столбцов в группе
         -- TODO
         , md5(
@@ -124,8 +124,8 @@ with rn_hash_diff_from_source as (
 	    rn_hash_diff_from_source
 )
 select
-	'manual__2024-11-20T10:43:48.001325+00:00' dataflow_id
-    , '2024-11-20 10:43:48.001325+00:00'::timestamp dataflow_dttm
+	'manual__2024-11-28T11:19:25.011076+00:00' dataflow_id
+    , '2024-11-28 11:19:25.011076+00:00'::timestamp dataflow_dttm
     , oid source_system_dk
     , client_rk
     , row_num

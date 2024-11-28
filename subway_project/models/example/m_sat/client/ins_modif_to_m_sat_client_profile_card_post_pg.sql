@@ -9,6 +9,4 @@
     ("fio_desc", "phone_desc", "birthday_dt", "valid_from_dttm")
 ) }}
 
-
-
 --depends on {{ ref('ods_cut_client_profile_card_post_pg') }}
